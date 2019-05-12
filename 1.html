@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>1. Layout i RWD</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        header,
+        footer {
+            background-color: #1A1C22;
+        }
+
+        main .box {
+            background-color: #343A40;
+        }
+
+        .wrapper {
+            display: grid;
+            grid-gap: 15px;
+            height: 100vh;
+            grid-template-rows: 100px minmax(220px, 1fr) minmax(220px, 1fr) 100px;
+        }
+
+        header {
+            grid-row-start: 1;
+            grid-row-end: 2;
+        }
+
+        .sidebar {
+            grid-row-start: 2;
+            grid-row-end: 3;
+            background-color: #6C757D;
+        }
+
+        main {
+            display: grid;
+            grid-gap: 15px;
+            grid-template-rows: repeat(6, 1fr);
+            grid-row-start: 3;
+            grid-row-end: 4;
+        }
+
+        footer {
+            grid-row-start: 4;
+            grid-row-end: 5;
+        }
+
+        @media (min-width: 600px) {
+            .wrapper {
+                height: 100vh;
+                grid-template-rows: 100px repeat(2, 1fr) 100px;
+            }
+
+            header {
+                grid-row-start: 1;
+                grid-row-end: 2;
+            }
+
+            .sidebar {
+                grid-row-start: 2;
+                grid-row-end: 3;
+            }
+
+            main {
+                grid-template-columns: repeat(2, 1fr);
+                grid-template-rows: repeat(3, 1fr);
+                grid-row-start: 3;
+                grid-row-end: 4;
+            }
+
+            footer {
+                grid-row-start: 4;
+                grid-row-end: 5;
+            }
+        }
+
+        @media (min-width: 900px) {
+            .wrapper {
+                height: 100vh;
+                grid-template-columns: 400px repeat(2, 1fr);
+                grid-template-rows: 100px 1fr 100px;
+            }
+
+            header {
+                grid-column-start: 1;
+                grid-column-end: 4;
+                grid-row-start: 1;
+                grid-row-end: 2;
+            }
+
+            .sidebar {
+                grid-column-start: 1;
+                grid-column-end: 2;
+                grid-row-start: 2;
+                grid-row-end: 3;
+            }
+
+            main {
+                grid-template-columns: repeat(2, 1fr);
+                grid-template-rows: repeat(3, 1fr);
+                grid-column-start: 2;
+                grid-column-end: 4;
+                grid-row-start: 2;
+                grid-row-end: 3;
+            }
+
+            footer {
+                grid-column-start: 1;
+                grid-column-end: 4;
+                grid-row-start: 3;
+                grid-row-end: 4;
+            }
+        }
+
+        @media (min-width: 1200px) {
+            .wrapper {
+                height: 100vh;
+                grid-template-columns: 400px 1fr;
+                grid-template-rows: 100px repeat(2, 1fr) 100px;
+            }
+
+            header {
+                grid-column-start: 1;
+                grid-column-end: 5;
+                grid-row-start: 1;
+                grid-row-end: 2;
+            }
+
+            .sidebar {
+                grid-column-start: 1;
+                grid-column-end: 2;
+                grid-row-start: 2;
+                grid-row-end: 4;
+            }
+
+            main {
+                grid-template-columns: repeat(3, 1fr);
+                grid-template-rows: repeat(2, 1fr);
+                grid-column-start: 2;
+                grid-column-end: 5;
+                grid-row-start: 2;
+                grid-row-end: 4;
+            }
+
+            footer {
+                grid-column-start: 1;
+                grid-column-end: 5;
+                grid-row-start: 4;
+                grid-row-end: 5;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrapper">
+        <header></header>
+        <aside class="sidebar"></aside>
+        <main>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+        </main>
+        <footer></footer>
+    </div>
+</body>
+
+</html>

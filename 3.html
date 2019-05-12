@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>3. Filtrowanie listy</title>
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .search {
+            background-color: white;
+            display: flex;
+            margin: 0 auto;
+            position: sticky;
+            top: 0;
+            width: 95%;
+        }
+
+        .search input {
+            border: 2px solid #aaa;
+            border-radius: 4px;
+            margin: 10px auto;
+            outline: none;
+            padding: 8px;
+            transition: .4s;
+            width: 95%;
+        }
+
+        .search input:focus {
+            border-color: #2b90f5;
+            box-shadow: 0 0 7px 0 #2b90f5;
+        }
+
+        .button {
+            background-color: #bbbbbb;
+            border: #777777 .5px solid;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 10px auto;
+            padding: 5px 10px;
+            text-transform: uppercase;
+            transition: 0.3s;
+        }
+
+        .table {
+            margin: 10px auto;
+            width: 95%;
+        }
+
+        .table ul {
+            list-style: none;
+        }
+
+        .table ul li {
+            border: 2px solid grey;
+            border-bottom: none;
+            padding: 10px;
+        }
+
+        .table ul li:last-child {
+            border-bottom: 2px solid grey;
+        }
+
+        @media (min-width: 569px) {
+
+            .search,
+            .search input,
+            .table {
+                margin: 10px auto;
+                width: 90%;
+            }
+
+            .button {
+                margin: 10px auto;
+            }
+
+            .wrapper {
+                width: 90%;
+                margin: 0 auto;
+            }
+        }
+
+        @media (min-width: 769px) {
+
+            .search,
+            .search input,
+            .table {
+                margin: 20px auto;
+                width: 80%;
+            }
+
+            .button {
+                margin: 20px auto;
+            }
+
+            .wrapper {
+                width: 80%;
+                margin: 5px auto;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="search">
+            <input type="text" id="input" class="input" placeholder="Type to search...">
+            <button id="searchButton" class="button">Search</button>
+        </div>
+        <div class="table">
+        </div>
+    </div>
+</body>
+<script>
+
+    document.addEventListener('DOMContentLoaded', () => {
+        const dataSource = [
+            'Walmart',
+            'State Grid',
+            'Sinopec Group',
+            'China National Petroleum',
+            'Royal Dutch Shell',
+            'Toyota Motor',
+            'Volkswagen',
+            'BP',
+            'Exxon Mobil',
+            'Berkshire Hathaway'
+        ];
+        const input = document.getElementsByClassName('input')[0];
+
+        input.addEventListener('keypress', (e) => {
+            if (e.keyCode == 13) {
+                filter();
+            }
+        });
+
+        const btn = document.getElementsByClassName('button')[0];
+        btn.addEventListener('click', (e) => {
+            filter();
+        });
+
+        const initialData = loadDataSourceToList(dataSource);
+        replaceTableContent(initialData);
+
+        function loadDataSourceToList(dataSource) {
+            const ul = Object.assign(document.createElement('ul'), { className: 'ul' });
+
+            if (dataSource) {
+                Array.prototype.forEach.call(dataSource, (dataRow) => {
+                    const li = Object.assign(document.createElement('li'), { className: 'li' });
+                    const p = Object.assign(document.createElement('p'), { className: 'profile' });
+                    p.innerText = dataRow;
+                    li.appendChild(p);
+                    ul.appendChild(li);
+                });
+            }
+
+            return ul;
+        }
+
+        function replaceTableContent(newTableContent) {
+            const table = document.getElementsByClassName('table')[0];
+            table.innerHTML = '';
+            table.appendChild(newTableContent);
+        }
+
+        function filter() {
+            const filter = input.value.trim().toUpperCase();
+            const filteredDataSource = dataSource.filter((dataRow) => {
+                return dataRow.toUpperCase().indexOf(filter) > -1;
+            });
+
+            const filteredData = loadDataSourceToList(filteredDataSource);
+            replaceTableContent(filteredData);
+        }
+    });
+</script>
+
+</html>
