@@ -20,7 +20,7 @@
       background-color: #bbbbbb;
     }
 
-    .modal-button {
+    .modal__button--cancel {
       padding: 5px 10px;
       position: relative;
       top: 0;
@@ -33,7 +33,7 @@
       color: azure;
     }
 
-    #modal {
+    .modal {
       position: absolute;
       left: 0;
       top: 0;
@@ -43,7 +43,7 @@
       display: none;
     }
 
-    .modal-content {
+    .modal__content {
       background-color: #fefefe;
       margin: 40vh auto 0;
       padding: 20px;
@@ -52,22 +52,21 @@
       position: relative;
     }
 
-    .modal-content a {
+    .modal__content .modal__link {
       text-decoration: none;
       color: black;
       font-size: 30px;
     }
 
-    .modal-content a:hover {
+    .modal__content .modal__link:hover {
       border-bottom: 1px black solid;
     }
 
-    .modal-content .button {
+    .modal__content .button {
       position: absolute;
       margin: 21px 0 0 10%;
       top: 0;
     }
-
 
     @media (min-width: 569px) {
 
@@ -77,22 +76,21 @@
         right: 5%;
       }
 
-      .modal-button {
+      .modal__button--cancel {
         padding: 5px 10px;
         font-size: 16px;
         right: 5%;
       }
-
     }
   </style>
 </head>
 
 <body>
   <button class="button">open modal</button>
-  <div id="modal" class="modal">
-    <div class="modal-content">
-      <a href="3.html">3.html</a>
-      <button class="button modal-button">&#x2716;</button>
+  <div class="modal">
+    <div class="modal__content">
+      <a href="3.html" class="modal__link">3.html</a>
+      <button class="button modal__button--cancel">&#x2716;</button>
     </div>
   </div>
   <script>
@@ -109,6 +107,5 @@
     });
   </script>
 </body>
-
 
 </html>

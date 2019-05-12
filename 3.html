@@ -23,7 +23,7 @@
             width: 95%;
         }
 
-        .search input {
+        .search .search__input {
             border: 2px solid #aaa;
             border-radius: 4px;
             margin: 10px auto;
@@ -33,12 +33,12 @@
             width: 95%;
         }
 
-        .search input:focus {
+        .search .search__input:focus {
             border-color: #2b90f5;
             box-shadow: 0 0 7px 0 #2b90f5;
         }
 
-        .button {
+        .search__button {
             background-color: #bbbbbb;
             border: #777777 .5px solid;
             border-radius: 4px;
@@ -72,13 +72,13 @@
         @media (min-width: 569px) {
 
             .search,
-            .search input,
+            .search .search__input,
             .table {
                 margin: 10px auto;
                 width: 90%;
             }
 
-            .button {
+            .search__button {
                 margin: 10px auto;
             }
 
@@ -91,13 +91,13 @@
         @media (min-width: 769px) {
 
             .search,
-            .search input,
+            .search .search__input,
             .table {
                 margin: 20px auto;
                 width: 80%;
             }
 
-            .button {
+            .search__button {
                 margin: 20px auto;
             }
 
@@ -112,8 +112,8 @@
 <body>
     <div class="wrapper">
         <div class="search">
-            <input type="text" id="input" class="input" placeholder="Type to search...">
-            <button id="searchButton" class="button">Search</button>
+            <input type="text" class="search__input" placeholder="Type to search...">
+            <button class="search__button">Search</button>
         </div>
         <div class="table">
         </div>
@@ -134,15 +134,15 @@
             'Exxon Mobil',
             'Berkshire Hathaway'
         ];
-        const input = document.getElementsByClassName('input')[0];
+        const searchInput = document.getElementsByClassName('search__input')[0];
 
-        input.addEventListener('keypress', (e) => {
+        searchInput.addEventListener('keypress', (e) => {
             if (e.keyCode == 13) {
                 filter();
             }
         });
 
-        const btn = document.getElementsByClassName('button')[0];
+        const btn = document.getElementsByClassName('search__button')[0];
         btn.addEventListener('click', (e) => {
             filter();
         });
@@ -173,7 +173,7 @@
         }
 
         function filter() {
-            const filter = input.value.trim().toUpperCase();
+            const filter = searchInput.value.trim().toUpperCase();
             const filteredDataSource = dataSource.filter((dataRow) => {
                 return dataRow.toUpperCase().indexOf(filter) > -1;
             });
